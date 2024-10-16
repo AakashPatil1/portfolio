@@ -1,5 +1,6 @@
-'use strict';
 
+
+'use strict';
 
 
 // element toggle function
@@ -116,23 +117,23 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 
 // contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
+// const form = document.querySelector("[data-form]");
+// const formInputs = document.querySelectorAll("[data-form-input]");
+// const formBtn = document.querySelector("[data-form-btn]");
 
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
+// // add event to all form input field
+// for (let i = 0; i < formInputs.length; i++) {
+//   formInputs[i].addEventListener("input", function () {
 
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
+//     // check form validation
+//     if (form.checkValidity()) {
+//       formBtn.removeAttribute("disabled");
+//     } else {
+//       formBtn.setAttribute("disabled", "");
+//     }
 
-  });
-}
+//   });
+// }
 
 
 
@@ -157,3 +158,56 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+emailjs.init({
+  publicKey: '4KFwbHJnsZuQ0bT6t',
+  // Do not allow headless browsers
+  // blockHeadless: true,
+  // blockList: {
+  //   // Block the suspended emails
+  //   list: ['foo@emailjs.com', 'bar@emailjs.com'],
+  //   // The variable contains the email address
+  //   watchVariable: 'userEmail',
+  // },
+  limitRate: {
+    // Set the limit rate for the application
+    id: 'app',
+    // Allow 1 request per 10s
+    throttle: 10000,
+  },
+});
+
+
+// Enable the submit button when all required fields are filled
+const formInputs = document.querySelectorAll('[data-form-input]');
+const submitButton = document.querySelector('[data-form-btn]');
+
+formInputs.forEach(input => {
+  input.addEventListener('input', () => {
+    const allFilled = [...formInputs].every(input => input.value.trim() !== '');
+    submitButton.disabled = !allFilled;
+  });
+});
+
+// Handle form submission using EmailJS
+document.querySelector('.form').addEventListener('submit', async (event) => {
+  event.preventDefault(); // Prevent the default form submission
+
+  const form = event.target;
+  const formData = {
+    to_name: "Aakash",
+    from_name: form.fullname.value,
+    reply_to: form.email.value,
+    message: form.message.value
+  };
+
+  try {
+    const response = await emailjs.send('service_kcwzx9w', 'template_rotfqui', formData);
+    console.log(response)
+    alert('Message sent successfully!');
+    form.reset();
+    submitButton.disabled = true; // Disable the button after submission
+  } catch (error) {
+    alert('There was an error sending your message. Please try again later.');
+  }
+});

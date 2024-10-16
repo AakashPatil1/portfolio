@@ -16,6 +16,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "YOUR_PUBLIC_KEY",
+        limitRate: {
+          // Set the limit rate for the application
+          id: 'app',
+          // Allow 1 request per 10s
+          throttle: 10000,
+        },
+      });
+    })();
+  </script>
 </head>
 
 <body>
@@ -42,6 +58,9 @@
           <h1 class="name" title="Aakash Patil">Aakash Patil</h1>
 
           <p class="title">Application developer</p>
+
+          <p class="title" style="color: rgb(85, 255, 0);margin-top: 10px;">Available for hire</p>
+
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -116,37 +135,27 @@
 
         </ul>
 
-        <!-- <div class="separator"></div>
+        <div class="separator"></div>
 
         <ul class="social-list">
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
+            <a href="https://github.com/AakashPatil1" class="social-link">
+              <ion-icon name="logo-github"></ion-icon>
             </a>
           </li>
 
           <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
+            <a href="https://www.linkedin.com/in/aakash-patil-nov1811/" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
             </a>
           </li>
 
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-        </ul> -->
+        </ul>
 
       </div>
 
     </aside>
-
-
-
-
 
     <!--
       - #main-content
@@ -182,9 +191,6 @@
         </ul>
 
       </nav>
-
-
-
 
 
       <!--
@@ -280,10 +286,10 @@
 
             <div class="modal-img-wrapper">
               <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
+                <!-- <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img> -->
               </figure>
 
-              <img src="./assets/images/icon-quote.svg" alt="quote icon">
+              <!-- <img src="./assets/images/icon-quote.svg" alt="quote icon"> -->
             </div>
 
             <div class="modal-content">
@@ -476,7 +482,7 @@
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          <form action="#" class="form" data-form>
+          <form class="form" data-form>
 
             <div class="input-wrapper">
               <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
@@ -744,8 +750,6 @@
     </div>
 
   </main>
-
-
 
 
 
